@@ -10,6 +10,7 @@ But first I will try to explain the folder structure and the use of some files i
 
 ## What the hell is the purpose of this file?
 Okay. I know it is a bit messy. But once you know the general structure it is easy. In the following table I will describe the most important files for you. 
+
 | File | Location  | Purpose |
 |---|---|---|
 | test.js | root  | in this file I tested how to format the data to work with chart.js |
