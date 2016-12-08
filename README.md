@@ -30,9 +30,9 @@ Okay. I know it is a bit messy. But once you know the general structure it is ea
 
 Okay. The folders are like every express app you know. "views" contains the .ejs files that are going to be rendered as HTML.  "public" contains the used css,js and fonts like bootstrap.  "helper" contains some helper functions and "controllers" the controllers which are called and reffered to by the router.
 
-Tradeofferions contains the steambot.
+Tradeofferinos contains the steambot.
 
-"donation_bot2.js" is there to set up the totp. I got it from someone in reddit but do not remeber where (if someone know pls credit him).
+"donation_bot2.js" is there to set up the totp. I got it from someone in reddit but do not remember where (if someone knows pls credit him).
 
 "donation_bot3.js" is a simple storage bot. Right now it accepts EVERY Trade. Usually it checks if the steamid is in the "profile-array" which contains all of the bitskinsbot ids.
 
@@ -72,4 +72,4 @@ You can update this list or use issues but I will start here and write down all 
 * Add package.json
 * export the apikey and apisecret in a file and add it to gitignore
 * fix the tradebot to only accept trade by bitskinbots
-* 
+* write a detailed description for every file (inside the file)
