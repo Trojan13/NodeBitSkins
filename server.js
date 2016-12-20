@@ -1,3 +1,5 @@
+
+
 // SERVER SETUP
 // =========================================================
 var totp = require('notp').totp;
@@ -8,7 +10,7 @@ var fs = require('fs');
 var express = require('express');
 
 
-// GLOBAL SCOPE
+// Setting ports and IP for the webserver
 // =========================================================
 global.__coreDir = __dirname + "/";
 global.__port = 8080;
@@ -28,13 +30,13 @@ app.set('layout', 'default');
 
 app.use(express.static('public'));
 
-// ROUTEN
+// All routes are inside the router.js
 // =========================================================
 var routes = require('./router');
 app.use('/', routes);
 
 
-// ERROR HANDLING AND OUTPUT PROCESSING
+// basic error handling
 // =========================================================
 app.use(function(err, req, res, next) {
     if (err) {

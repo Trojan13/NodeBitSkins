@@ -1,3 +1,7 @@
+/*
+This is a standalone bot which runs by itself and include a express server
+just set the api_key and secret and run it with node. 
+*/
 var express = require('express');
 var totp = require('notp').totp;
 var base32 = require('thirty-two');

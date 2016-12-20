@@ -1,3 +1,6 @@
+/*
+testfile to figure out the money logging for chart.js
+*/
 var rp = require('request-promise');
 var express = require('express');
 var totp = require('notp').totp;

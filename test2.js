@@ -1,3 +1,9 @@
+/*
+Testfile to interact with the bitskins pusher.
+Bitskins pushes newest offers to the chat via websocket.
+The bot curently only checks for new items and not for updated prices
+*/
+
 var rp = require('request-promise');
 var express = require('express');
 var totp = require('notp').totp;
