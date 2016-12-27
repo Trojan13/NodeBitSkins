@@ -1,4 +1,4 @@
-var rp = require('request-promise');
+rp = require('request-promise');
 var base32 = require('thirty-two');
 var totp = require('notp').totp;
 var RateLimiter = require('limiter').RateLimiter;
@@ -75,5 +75,4 @@ cb2 = catch
         var time = date + '.' + month + ' ' + hour + ':' + min;
         return time;
     }
-    , rp
 };

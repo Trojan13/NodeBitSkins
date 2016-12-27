@@ -426,7 +426,7 @@ function checkPriceOncsgoFast(name, cb) {
         }
         , json: true
     };
-    RequestHelper.rp(options).then(function (response) {
+    rp(options).then(function (response) {
         return cb(response[name]);
     }).catch(function (err) {
         logIt('Could not get price from csgofast.com', 'ERROR');
