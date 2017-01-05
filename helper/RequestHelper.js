@@ -1,8 +1,7 @@
-rp = require('request-promise');
+request = require('request');
 var base32 = require('thirty-two');
 var totp = require('notp').totp;
-var RateLimiter = require('limiter').RateLimiter;
-var limiter = new RateLimiter(5, 'second');
+var limit = require("simple-rate-limiter");
 var api_key = '';
 var secret = '';
 var twofactorcode = totp.gen(base32.decode(secret));
@@ -21,22 +20,21 @@ cb2 = catch
 */
         if (!apiAccess) {
             //console.log("Generated new Code!");
-            bitSkins2FaCode = this.get2factorCode();
+            bitSkins2FaCode = get2factorCode();
             //apiAccess = true;
         }
         var uri = 'https://bitskins.com/api/v1/' + u + '/?api_key=' + api_key + '&code=' + bitSkins2FaCode + a;
-        limiter.removeTokens(1, function () {
-            var options = {
-                uri: uri
-                , headers: {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'
-                        //,'Content-Length': uri.length
-                }
-                , json: true
-            };
-            rp(options).then(function (res) {
-                return cb1(res);
-            }).catch(function (err) {
+        var options = {
+            uri: uri
+            , headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'
+                    //,'Content-Length': uri.length
+            }
+            , json: true
+        };
+        request(options, function (err, res, body) {
+            console.log(res.data);
+            if (err) {
                 console.log(err.error.data.error_message);
                 console.log(66666);
                 if (err.error.data.error_message.match('API access enabled') != null) {
@@ -46,7 +44,10 @@ cb2 = catch
                     error: err
                     , options: options
                 });
-            });
+            }
+            else {
+                return cb1(res);
+            }
         });
     }
     , getDateTime: function () {
@@ -76,3 +77,7 @@ cb2 = catch
         return time;
     }
 };
+
+function get2factorCode() {
+    return totp.gen(base32.decode(secret));
+}

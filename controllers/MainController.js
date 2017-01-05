@@ -17,11 +17,13 @@ var itemArrayTryingToBuy = []
     , scannedID = []
     , scannedUnique = 0
     , logs = [];
-var crawlBuyTime = 650
+var crawlBuyTime = 1
     , crawlSaleTime = 120000
     , crawlWithdrawTime = 120000
-    , logMoneyTime = 3600000;
+    , logMoneyTime = 3600000
+    , bitSkinsRefreshTime = 1700000;
 var inv_count = 0;
+var bitSkinsJson = {};
 var tmpFirstItem, tmpLastItem, searchPage = 1
     , searchPage2 = 1
     , tmpFirstItem2, tmpLastItem2;
@@ -126,6 +128,10 @@ module.exports = {
 (function repeat4() {
     logMoney()
     timer = setTimeout(repeat4, logMoneyTime);
+})();
+(function repeat5() {
+    getBitskinsJSON();
+    timer = setTimeout(repeat5, bitSkinsRefreshTime);
 })();
 
 
@@ -419,16 +425,27 @@ function logIt(txt, type) {
 }
 
 function checkPriceOncsgoFast(name, cb) {
-    var options = {
+    try {
+        cb(bitSkinsJson[name]);
+    } catch(err) {
+         logIt('Could not get price for '+name+' on csgofast.com Err:'+err, 'ERROR');
+        }
+}
+
+function getBitskinsJSON(){
+   var options = {
         uri: 'https://api.csgofast.com/price/all'
         , headers: {
             'User-Agent': 'Request-Promise'
         }
         , json: true
     };
-    rp(options).then(function (response) {
-        return cb(response[name]);
-    }).catch(function (err) {
-        logIt('Could not get price from csgofast.com', 'ERROR');
-    });
+    request(options, function (err, res, body) {
+        if (!err) {
+                var bitSkinsJson = response;    
+        } else {
+                 logIt('Could not get price from csgofast.com', 'ERROR');   
+        }
+
+});
 }
