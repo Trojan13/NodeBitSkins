@@ -1,0 +1,14 @@
+{
+    "Bitskins": {
+        "API_KEY": "<YOUR API_KEY HERE>",
+        "API_SECRET": "<YOUR API_SECRET HERE>"
+    },
+    "Steamapi": {
+        "API_KEY": "<YOUR API_KEY HERE>"
+    },
+    "Prices": {
+        "MIN_PRICE": 1000.0,
+        "MAX_PRICE": 1500.0,
+        "MIN_DISCOUNT": 30.0
+    }
+}

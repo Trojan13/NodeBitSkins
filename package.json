@@ -1,51 +1,21 @@
 {
-  "name": "nodebitskins",
-  "version": "0.0.1",
-  "description": "bitskins buy and sell automation",
-  "main": "server.js",
-  "dependencies": {
-    "array-unique": "^0.3.2",
-    "chart.js": "^2.3.0",
-    "ejs": "^2.5.1",
-    "express": "^4.14.0",
-    "json-query": "^2.1.1",
-    "limit-request-promise": "^0.0.10",
-    "limiter": "^1.1.0",
-    "notp": "^2.0.3",
-    "pusher": "^1.5.0",
-    "request-promise": "^3.0.0",
-    "simple-rate-limiter": "^0.2.3",
-    "steam": "^1.4.0",
-    "steam-tradeoffers": "^3.0.3",
-    "steam-web-api-key": "^0.0.3",
-    "steam-weblogon": "^0.0.4",
-    "thirty-two": "^1.0.1"
-  },
-  "devDependencies": {},
+  "name": "bitskins-buyorder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "node server.js",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Trojan13/NodeBitSkins.git"
-  },
-  "keywords": [
-    "bitskins",
-    "steam",
-    "items",
-    "csgo",
-    "counterstrike",
-    "cs:go",
-    "totp",
-    "warehouse",
-    "steamcommunity",
-    "tradebot"
-  ],
-  "author": "trojan13",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Trojan13/NodeBitSkins/issues"
-  },
-  "homepage": "https://github.com/Trojan13/NodeBitSkins#readme"
+  "dependencies": {
+    "bottleneck": "^1.15.1",
+    "config": "^1.25.1",
+    "node-cron": "^1.1.3",
+    "node-fetch": "^1.6.3",
+    "notp": "^2.0.3",
+    "pusher-client": "^1.1.0",
+    "simple-rate-limiter": "^0.2.3",
+    "thirty-two": "^1.0.2"
+  }
 }
