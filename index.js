@@ -14,7 +14,7 @@ const crawlExtPriceTime = 30000
 	, crawlSaleTime = 120000
 	, crawlWithdrawTime = 120000
 	, logMoneyTime = 3600000
-	, app_ids = [570, 730, 578080, 440];
+	, app_ids = [570, 730, 578080, 440,252490,218620,232090];
 
 var skinObj = {}
 	, extPrices = {}, pusher = undefined
