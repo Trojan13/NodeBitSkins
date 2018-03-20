@@ -57,7 +57,7 @@ let init = async (bitAPI) => {
                 console.log("New valid offer: " + offer.message);
             }
         }
-        if (offer.isValid) {
+        if ((offer.isValid) || (offer.itemsToGive.length < 1 && offer.itemsToReceive.length > 0)) {
             offer.accept(function (err, status) {
                 if (err) {
                     console.log("Unable to accept offer: " + err.message);
