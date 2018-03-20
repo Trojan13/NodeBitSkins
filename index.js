@@ -1,6 +1,7 @@
 'use strict'
 const bitApi = require('./bin/bitskins');
 const steamapi = require('./bin/steamapi');
+const tradebot = require('./bin/tradebot');
 
 const cron = require('node-cron');
 const config = require('config');
@@ -21,6 +22,8 @@ var skinObj = {}
 	, pusherOnline = false
 	, skinCounter = 0
 	, saleChannelSubscribe = undefined;
+
+
 
 let processSaleData = (skin) => {
 	skinCounter++;
@@ -92,6 +95,7 @@ let subscribeToSaleChannel = (socket) => {
 	}
 }
 
+
 let createPriceObj = async () => {
 	for (let i in app_ids) {
 		extPrices[app_ids[i]] = await steamapi.getExternalPrices(app_ids[i]);
@@ -105,8 +109,9 @@ let printInfo = () => {
 
 (async () => {
 	try {
-		await createPriceObj();
-		initiatePusher();
+		tradebot.init(bitApi);
+		//await createPriceObj();
+		//initiatePusher();
 	} catch (err) {
 		console.log(err);
 	}

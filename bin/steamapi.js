@@ -4,7 +4,7 @@ const config = require('config');
 var api_key = config.get("Steamapi.API_KEY");
 
 
-getExternalPrices = async(appid) => {
+let getExternalPrices = async(appid) => {
     let err,data,body;
     try {
         body = await fetch('https://api.steamapi.io/market/prices/'+appid+'?key='+api_key, {

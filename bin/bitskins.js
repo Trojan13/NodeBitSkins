@@ -40,4 +40,9 @@ let buySkin = (item_ids,prices,app_id) => {
     return limiter.schedule(apiRequest, 'buy_item', 'post','&auto_trade=false&app_id=' + app_id + '&item_ids=' + item_ids + '&prices=' + prices);
 }
 
+let getActiveTradeOffers = () => {
+    return limiter.schedule(apiRequest, 'get_recent_trade_offers', 'post','&active_only=true');
+}
+
 module.exports.buySkin = buySkin;
+module.exports.getActiveTradeOffers = getActiveTradeOffers;

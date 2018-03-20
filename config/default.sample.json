@@ -6,6 +6,12 @@
     "Steamapi": {
         "API_KEY": "<YOUR API_KEY HERE>"
     },
+    "Steam": {
+        "accountName": "<YOUR ACCOUNT HERE>",
+        "accountPassword": "<YOUR PASSWORD HERE>",
+        "authCode": "<YOUR AUTH_CODE HERE>",
+        "identitySecret": "<YOUR SECRET HERE>"
+    },
     "Prices": {
         "MIN_PRICE": 1000.0,
         "MAX_PRICE": 1500.0,
