@@ -15,7 +15,8 @@ const crawlExtPriceTime = 30000
 	, crawlSaleTime = 120000
 	, crawlWithdrawTime = 120000
 	, logMoneyTime = 3600000
-	, app_ids = [570, 730, 578080, 440,252490,218620,232090];
+	, app_ids = [570, 730, 578080, 440, 252490, 218620, 232090];
+
 
 var skinObj = {}
 	, extPrices = {}, pusher = undefined
@@ -26,32 +27,36 @@ var skinObj = {}
 
 
 let processSaleData = (skin) => {
-	skinCounter++;
-	var extPrice = extPrices[skin.app_id][skin.market_hash_name];
-	var intPrice = skin.price;
-	var percent = Math.round(100 - ((intPrice / extPrice) * 100));
-	skin.state = "idle";
-	skinObj[skin.item_id] = skin;
-	if (((extPrice >= 0.06) && (extPrice <= 0.10)) && (percent >= 85.0)) {
-		skinObj[skin.item_id].state = "buying";
-		bitApi.buySkin(skin.item_id, intPrice, skin.app_id);
-	}
-	else if ((extPrice >= 0.11) && (extPrice <= 4.99) && (percent >= 70.0)) {
-		skinObj[skin.item_id].state = "buying";
-		bitApi.buySkin(skin.item_id, intPrice, skin.app_id);
-	}
-	else if ((extPrice >= 5) && (extPrice <= 80) && (percent >= 55.0)) {
-		skinObj[skin.item_id].state = "buying";
-		bitApi.buySkin(skin.item_id, intPrice, skin.app_id);
-	}
-	else if ((extPrice >= 81) && (percent >= 50.0)) {
-		skinObj[skin.item_id].state = "buying";
-		bitApi.buySkin(skin.item_id, intPrice, skin.app_id);
-	} else if (percent >= 98.0) {
-		skinObj[skin.item_id].state = "buying";
-		bitApi.buySkin(skin.item_id, intPrice, skin.app_id);
-	} else {
-		delete skinObj[skin.item_id];
+	try {
+		skinCounter++;
+		var extPrice = extPrices[skin.app_id][skin.market_hash_name];
+		var intPrice = skin.price;
+		var percent = Math.round(100 - ((intPrice / extPrice) * 100));
+		skin.state = "idle";
+		skinObj[skin.item_id] = skin;
+		if (((extPrice >= 0.06) && (extPrice <= 0.10)) && (percent >= 85.0)) {
+			skinObj[skin.item_id].state = "buying";
+			bitApi.buySkin(skin.item_id, intPrice, skin.app_id);
+		}
+		else if ((extPrice >= 0.11) && (extPrice <= 4.99) && (percent >= 70.0)) {
+			skinObj[skin.item_id].state = "buying";
+			bitApi.buySkin(skin.item_id, intPrice, skin.app_id);
+		}
+		else if ((extPrice >= 5) && (extPrice <= 80) && (percent >= 55.0)) {
+			skinObj[skin.item_id].state = "buying";
+			bitApi.buySkin(skin.item_id, intPrice, skin.app_id);
+		}
+		else if ((extPrice >= 81) && (percent >= 50.0)) {
+			skinObj[skin.item_id].state = "buying";
+			bitApi.buySkin(skin.item_id, intPrice, skin.app_id);
+		} else if (percent >= 98.0) {
+			skinObj[skin.item_id].state = "buying";
+			bitApi.buySkin(skin.item_id, intPrice, skin.app_id);
+		} else {
+			delete skinObj[skin.item_id];
+		}
+	} catch (e) {
+		console.error("Couldn't find item: "+ skin.market_hash_name);
 	}
 }
 
@@ -110,14 +115,14 @@ let printInfo = () => {
 (async () => {
 	try {
 		tradebot.init(bitApi);
-		//await createPriceObj();
-		//initiatePusher();
+		await createPriceObj();
+		initiatePusher();
 	} catch (err) {
 		console.log(err);
 	}
 })();
 
-cron.schedule('0 * * * *', async () => {
+cron.schedule('*/1 * * * *', async () => {
 	try {
 		printInfo();
 	} catch (err) {
@@ -125,7 +130,7 @@ cron.schedule('0 * * * *', async () => {
 	}
 });
 
-cron.schedule('0 */12 * * *', async () => {
+cron.schedule('0 */2 * * *', async () => {
 	try {
 		await createPriceObj();
 	} catch (err) {

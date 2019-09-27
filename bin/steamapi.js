@@ -7,7 +7,7 @@ var api_key = config.get("Steamapi.API_KEY");
 let getExternalPrices = async(appid) => {
     let err,data,body;
     try {
-        body = await fetch('https://api.steamapi.io/market/prices/'+appid+'?key='+api_key, {
+        body = await fetch('http://api.steamapis.com/market/items/'+appid+'?api_key='+api_key, {
             method: 'get'
         });
         data = await body.json();
@@ -22,7 +22,11 @@ let getExternalPrices = async(appid) => {
             error.body = body;
             reject(error)
         } else {
-            resolve(data);
+            let tmpData = {};
+            Object.keys(data.data).forEach(function(k) {
+                tmpData[data.data[k].market_hash_name] = data.data[k];
+              });
+            resolve(tmpData);
         }
     })
 }

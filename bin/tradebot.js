@@ -54,7 +54,7 @@ let init = async (bitAPI) => {
         for (i in bitskinsOffers) {
             if (offer.message == bitskinsOffers[i].trade_message) {
                 offer.isValid = true;
-                console.log("New valid offer: " + offer.message);
+                console.log("Offer #" + offer.id + "is valid. Code: " + offer.message);
             }
         }
         if ((offer.isValid) || (offer.itemsToGive.length < 1 && offer.itemsToReceive.length > 0)) {
