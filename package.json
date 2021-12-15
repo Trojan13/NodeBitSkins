@@ -14,7 +14,7 @@
     "colors": "^1.4.0",
     "config": "^1.31.0",
     "node-cron": "^1.2.1",
-    "node-fetch": "^1.7.3",
+    "node-fetch": "^2.6.1",
     "notp": "^2.0.3",
     "pusher-client": "^1.1.0",
     "simple-rate-limiter": "^0.2.3",
